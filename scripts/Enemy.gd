@@ -18,7 +18,7 @@ onready var playback = $AnimationTree.get("parameters/playback")
 
 func _ready() -> void:
 	$FireTimer.connect("timeout", self, "on_timeout")
-	
+	$AnimationTree.active = true
 
 func _physics_process(delta: float) -> void:
 	linear_vel = move_and_slide(linear_vel, Vector2.UP)

@@ -16,6 +16,7 @@ onready var playback = $AnimationTree.get("parameters/playback")
 
 func _ready() -> void:
 	$Attack.connect("body_entered", self, "on_body_entered")
+	$AnimationTree.active = true
 
 func _physics_process(delta: float) -> void:
 	linear_vel = move_and_slide(linear_vel, Vector2.UP)
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 	
 	if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("jump"):
 		linear_vel.y = -MAX_SPEED
+		_airborne_time = _MAX_AIRBORNE_TIME
 	
 	if on_floor and Input.is_action_just_pressed("attack"):
 		playback.travel("attack")
